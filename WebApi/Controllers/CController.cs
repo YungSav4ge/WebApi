@@ -24,6 +24,7 @@ namespace WebApi.Controllers
         {
             catalog.Id = _catalogs.Count + 1;
             _catalogs.Add(catalog);
+
             return CreatedAtAction(nameof(GetCatalogs), new { id = catalog.Id }, catalog);
         }
     }

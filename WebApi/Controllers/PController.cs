@@ -9,11 +9,6 @@ namespace WebApi.Controllers
     {
         private static List<Products> _products = new List<Products>();
 
-        public PController()
-        {
-            ///???
-        }
-
         [HttpGet("count")] ///Tæller hvor mange Products der er
         public int GetCount()
         {
