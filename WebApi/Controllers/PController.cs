@@ -11,8 +11,7 @@ namespace WebApi.Controllers
 
         public PController()
         {
-            /// er tom så der ikke bliver smidt de samme ting ud flere, når man henter GET.
-            /// ellers skal den måske laves om til et static objekt
+            ///???
         }
 
         [HttpGet("count")] ///Tæller hvor mange Products der er
@@ -22,18 +21,18 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get() /// Henter Product list
+        public ActionResult<IEnumerable<Products>> Get(int catalogId)
         {
             if (_products.Count == 0)
             {
                 return NoContent();
             }
 
-            return Ok(_products);
+            return _products.Where(p => p.CatalogId == catalogId).ToList();
         }
 
         [HttpPost]
-        public ActionResult<Products> Post(Products product) /// Gør så vi kan POST et nyt 
+        public ActionResult<Products> Post([FromBody] Products product) /// Gør så vi kan POST et nyt 
         {
             if (string.IsNullOrEmpty(product.Name)) /// Sender en fejl tilbage hvis der ikke er noget navn
             {
