@@ -39,7 +39,7 @@ namespace WebApi.Controllers
                 return BadRequest("Product price must be greater than 0.");
             }
 
-            product.Id = _products.Count + 1;
+            product.Id = _products.Count + 1; /// Det nye product får et nyt ID
             _products.Add(product);
 
             return CreatedAtAction(nameof(Get), new { id = product.Id }, product);
